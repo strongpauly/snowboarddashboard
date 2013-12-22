@@ -139,6 +139,7 @@
 </style>
 <script type="text/javascript" src="script/Date.js"></script>
 <script type="text/javascript" src="script/Destination.js"></script>
+<script type="text/javascript" src="script/Trip.js"></script>
 <script type="text/javascript" src="script/Link.js"></script>
 <script type="text/javascript">
 var withMillis = false;
@@ -167,10 +168,7 @@ var franceDiff = 1;
 var austriaDiff = 1;
 var canadaDiff = -7;
 
-var destinations2012 = [	
-	new Destination("Canada", null, 
-		new Date('January 28, 2012 13:00:00'), 
-		new Date('January 29, 2012 10:00:00'),
+var canada = new Destination("Canada", null,
 		canadaDiff, 
 		[			
 			new Link("http://www.skifernie.com/conditions/mountain-cam.aspx", "Fernie"),
@@ -190,12 +188,9 @@ var destinations2012 = [
 			new Link("http://www.skikimberley.com/images/themountain/Trail_Map_0910.jpg", "Panorama"),
 			new Link("http://www.piste-maps.co.uk/Portals/0/Piste-Maps/Canada/Revelstoke-Piste-Map-Large-Front.jpg", "Revelstoke"),
 			new Link("http://www.skiholidayscanada.co.uk/images/kicking-horse-piste-map.jpg", "Kicking Horse")
-		],
-		new Date('February 11, 2012 18:15:00')
-		),
-	new Destination("Austria", "St Anton", 
-		new Date('February 19, 2012 08:15:00'), 
-		new Date('February 20, 2012 10:00:00'), 
+		]
+		)
+var stAnton = new Destination("Austria", "St Anton", 
 		austriaDiff, 
 		[
 			new Link("http://webtv.feratel.com/webtv/?bgcolor=2080ff&color1=ffffff&color2=fff265&color3=ffffff&design=960&c0=1&lg=en&pg=7F98D269-5DFE-4FC9-99BF-97B5D8DA821F&t=6&cURL=8kxW2nP69SR05cnJ2w0GvgWx3Fe2bTe7VQdeG78LYiLRnHyZVb2OVBPnRFNgUqkJCZd35Pc1S83sRInOnLhLkQgb0NXA6kAoGg3AjbR3Klbn66W%2FD2VRpE6HcuFlkY7rs%2BnGGuSKLat4vFcnbKuvRg%3D%3D"
@@ -211,11 +206,9 @@ var destinations2012 = [
 			new Link("http://ski.intermaps.com/skiarlberg/skimap.asp?map=ost&startdata=lifte&lang=en", "St Anton"),
 			new Link("http://ski.intermaps.com/skiarlberg/skimap.asp?map=west&startdata=lifte&lang=en", "Lech"),
 			new Link("http://ski.intermaps.com/skiarlberg/KMLs/skiarlberg_googleearth_together.asp?zoom=2&lang=en", "Google Earth")
-		],
-		new Date('February 26, 2012 12:00:00')),
-	new Destination("France", "Chamonix", 
-		new Date('March 11, 2012 13:00:00'), 
-		new Date('March 12, 2012 10:00:00'), 
+		]);
+		
+var chamonix = new Destination("France", "Chamonix", 
 		franceDiff, 
 		[
 			new Link("http://www.chamonix.net/english/webcam/chamcam.htm", "Chamonix")
@@ -223,45 +216,9 @@ var destinations2012 = [
 		[			
 			"http://www.j2ski.com/snow_forecast/France/Chamonix_mini.html",
 			"http://www.j2ski.com/snow_forecast/France/Argentiere_mini.html"
-		], null,
-		new Date('March 18, 2012 12:00:00'))	
-	];	
+		], null);	
 
-var pDS_cams = [
-			new Link("http://livecam.avoriaz.com/", "Avoriaz"),
-			new Link("http://portesdusoleil.livecam360.com", "Pointe des Mossettes")
-		];
-var pDS_forecasts = [
-			"http://www.j2ski.com/snow_forecast/France/Morzine_mini.html",
-			"http://www.j2ski.com/snow_forecast/France/Les_Gets_mini.html",
-			"http://www.j2ski.com/snow_forecast/France/Avoriaz_mini.html"
-		]
-var pDS_maps = [
-			new Link("http://www.avoriaz.com/station-alpes-france/modules/plan-des-pistes/index.php?lg=uk", "Portes du Soleil")
-		];
-
-var pDS_longRange = [
-	new Link("http://www.worldweatheronline.com/Morzine-weather/Rhone-Alpes/FR.aspx", "World Weather")
-];
-	
-var destinations = [	
-	/*
-	new Destination("France", "Chamonix", 
-		new Date('January 12, 2013 13:00:00'), 
-		new Date('January 13, 2013 10:00:00'), 
-		franceDiff, 
-		[
-			new Webcam("Chamonix", "http://www.chamonix.net/english/webcam/chamcam.htm")
-		],
-		[			
-			"http://www.j2ski.com/snow_forecast/France/Chamonix_mini.html",
-			"http://www.j2ski.com/snow_forecast/France/Argentiere_mini.html"
-		], null,
-		new Date('January 26, 2013 12:00:00')),	*/
-	/*
-	new Destination("France", "Tignes",
-		new Date('February 2, 2013 08:55:00'), 
-		new Date('February 3, 2013 10:00:00'), 
+var tignes = new Destination("France", "Tignes",
 		franceDiff, 
 		[
 			new Link("http://tignes.livecam360.net/lac", "Tignes Le Lac"),
@@ -276,42 +233,42 @@ var destinations = [
 		[
 			new Link("http://cdn2.j2ski.com/piste_maps/o/FR/Tignes_Piste_Map.jpg", "Static Map"),
 			new Link("http://www.tignes.net/en/skiing-in-tignes/ski-run-map-28.html", "Interactive Map")
+		]);
+		
+var portesDuSoleil = new Destination("France", "Chatel",
+		franceDiff, 
+		[
+			new Link("http://livecam.avoriaz.com/", "Avoriaz"),
+			new Link("http://portesdusoleil.livecam360.com", "Pointe des Mossettes")
 		],
-		new Date('February 26, 2012 20:30:00')) ,
-	*/
-	new Destination("France", "Chatel",
+		[
+			"http://www.j2ski.com/snow_forecast/France/Morzine_mini.html",
+			"http://www.j2ski.com/snow_forecast/France/Les_Gets_mini.html",
+			"http://www.j2ski.com/snow_forecast/France/Avoriaz_mini.html"
+		],
+		[
+			new Link("http://www.avoriaz.com/station-alpes-france/modules/plan-des-pistes/index.php?lg=uk", "Portes du Soleil")
+		],
+		[
+	new Link("http://www.worldweatheronline.com/Morzine-weather/Rhone-Alpes/FR.aspx", "World Weather")
+]);
+	
+var trips = [	
+	new Trip(portesDuSoleil, "Rider Social <br> Chatel, France",
 		new Date('January 4, 2014 12:15:00'), 
 		new Date('January 5, 2014 10:00:00'), 
-		franceDiff, 
-		pDS_cams,
-		pDS_forecasts,
-		pDS_maps,
-		new Date('January 18, 2014 11:05:00'),
-		pDS_longRange),
-	new Destination("France", "Montriond",
+		new Date('January 18, 2014 11:05:00')),
+	new Trip(portesDuSoleil, '"Actix" <br> Montriond, France',
 		new Date('February 2, 2014 12:00:00'), 
 		new Date('February 3, 2014 10:00:00'), 
-		franceDiff, 
-		pDS_cams,
-		pDS_forecasts,
-		pDS_maps,
-		new Date('February 9, 2014 12:00:00'),
-		pDS_longRange
-		),
-	new Destination("France", "Montriond",
+		new Date('February 9, 2014 12:00:00')),
+	new Trip(portesDuSoleil, "Slushy Week <br> Montriond, France",
 		new Date('March 16, 2014 12:00:00'), 
 		new Date('March 17, 2014 10:00:00'), 
-		franceDiff, 
-		pDS_cams,
-		pDS_forecasts,
-		pDS_maps,
-		new Date('March 23, 2014 12:00:00'),
-		pDS_longRange
-		)
-	
+		new Date('March 23, 2014 12:00:00'))
 	];	
 
-destinations.sort(function(a, b)
+trips.sort(function(a, b)
 {
 	return a.flight - b.flight;
 });
@@ -319,10 +276,10 @@ destinations.sort(function(a, b)
 $(document).ready(function() {
 
 var parent = $('#destinations');
-for(var i=0; i< destinations.length; i++)
+for(var i=0; i< trips.length; i++)
 {
-	var destination = destinations[i];	
-	destination.render(parent);
+	var trip = trips[i];	
+	trip.render(parent);
 }
 
 updating =0;
@@ -331,10 +288,10 @@ updating =0;
 function update()
 {	
 	var now = new Date();
-	for(var i=0; i< destinations.length; i++)
+	for(var i=0; i< trips.length; i++)
 	{
-		var destination = destinations[i];		
-		destination.update(now);
+		var trip = trips[i];		
+		trip.update(now);
 	}	
 	updating =  setTimeout(update, withMillis ? 100 : 1000);
 }
