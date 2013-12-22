@@ -1,0 +1,354 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<script src="script/jquery-1.6.4.js" type="text/javascript"></script>
+<link href="http://www.snow-forecast.com/stylesheets/feed.css" media="screen" rel="stylesheet" type="text/css" />
+<style>
+	div, h1, h2, h3, img
+	{
+		margin:0;
+		padding:0;
+	}
+	
+	h1
+	{
+		margin-top:10px;
+		margin-bottom:10px;
+	}
+	
+	h2
+	{
+		margin-top:7px;
+		margin-bottom:7px;
+	}
+	
+	h3
+	{
+		padding-left:5px;
+		margin-top:5px;
+		margin-bottom:5px;
+	}
+	
+	img
+	{
+		vertical-align:middle;
+		margin-left:5px;
+		margin-right:5px;
+	}
+	
+	a, a:visited
+	{
+		text-decoration:underline;
+		color:navy;
+	}
+		
+	
+	body
+	{			
+		font-family:Tahoma,Arial,sans-serif;
+		font-size:11px;
+		color:navy;
+	}
+	
+	#outer
+	{
+		margin-top:   35px;
+		margin-left:  35px;
+		float:		  left;
+	}
+		
+	iframe
+	{
+		height:116px;	
+		width:316px;
+		border: 0px;
+	}	
+	
+	.times
+	{
+		float:left;
+		display:table-cell;
+		width:275px;
+	}
+	
+	.flightTime, .boardTime, .maps
+	{
+		padding-left:10px;
+	}
+	
+	.pastEvent
+	{
+		height:52px;
+	}
+	
+	.snowreports
+	{
+		display:table;
+		float:left;	
+		height:100%;
+	}
+	
+	.snowreport
+	{
+		display:table-cell;
+		padding-left:20px;
+		padding-right:20px;
+		vertical-align:middle;
+	}		
+	
+	.destination, .destination-map
+	{
+		border-top: 1px solid navy;
+		height:200px;
+		padding-left:20px;
+		clear:both;
+        padding-bottom:15px;
+	}
+	
+	.destination-map
+	{
+		height:275px;
+	}
+			
+	.maps span, .webcams span
+	{
+		padding-right:4px;
+	}
+	
+	div.time, div.localTime
+	{
+		padding-left:10px;
+	}
+	
+	#updateArea
+	{
+		float:left;
+	}
+	
+	#snowReportArea
+	{
+		float:left;
+		padding-left:30px;
+	}	
+	
+	.webcams
+	{
+		padding-left :10px
+	}
+</style>
+<script type="text/javascript" src="script/Date.js"></script>
+<script type="text/javascript" src="script/Destination.js"></script>
+<script type="text/javascript" src="script/Link.js"></script>
+<script type="text/javascript">
+var withMillis = false;
+
+(function(){
+var params = window.location.href.split('?')[1];
+if(params)
+{
+	params = params.split("&");
+	for (var i=0; i<params.length; i++)
+	{
+		var param = params[i].toLowerCase();		
+		if(param.indexOf('withmillis') == 0)
+		{
+			var value = param.split('=')[1];
+			if(value)
+			{
+				withMillis = value == 'true';
+			}
+		}
+	}
+}
+})();
+
+var franceDiff = 1;
+var austriaDiff = 1;
+var canadaDiff = -7;
+
+var destinations2012 = [	
+	new Destination("Canada", null, 
+		new Date('January 28, 2012 13:00:00'), 
+		new Date('January 29, 2012 10:00:00'),
+		canadaDiff, 
+		[			
+			new Link("http://www.skifernie.com/conditions/mountain-cam.aspx", "Fernie"),
+			new Link("http://www.skikimberley.com/conditions/mountain-cam.aspx", "Kimberley"),
+			new Link("http://www.panoramaresort.com/the-mountain/webcams", "Panorama"),
+			new Link("http://www.revelstokemountainresort.com/CONDITIONS/Webcams.html", "Revelstoke"),		
+			new Link("http://www.kickinghorseresort.com/mountain/information/webcam-all.aspx", "Kicking Horse")
+		],
+		[				
+			"http://www.j2ski.com/snow_forecast/Canada/Fernie_mini.html",
+			"http://www.j2ski.com/snow_forecast/Canada/Revelstoke_mini.html",
+			"http://www.j2ski.com/snow_forecast/Canada/Banff_mini.html"         
+		],
+		[
+			new Link("http://pc.sno.mobi/img/limg/mappic/2010319111018906i.jpg", "Fernie"),
+			new Link("http://www.skikimberley.com/images/themountain/Trail_Map_0910.jpg", "Kimberley"),
+			new Link("http://www.skikimberley.com/images/themountain/Trail_Map_0910.jpg", "Panorama"),
+			new Link("http://www.piste-maps.co.uk/Portals/0/Piste-Maps/Canada/Revelstoke-Piste-Map-Large-Front.jpg", "Revelstoke"),
+			new Link("http://www.skiholidayscanada.co.uk/images/kicking-horse-piste-map.jpg", "Kicking Horse")
+		],
+		new Date('February 11, 2012 18:15:00')
+		),
+	new Destination("Austria", "St Anton", 
+		new Date('February 19, 2012 08:15:00'), 
+		new Date('February 20, 2012 10:00:00'), 
+		austriaDiff, 
+		[
+			new Link("http://webtv.feratel.com/webtv/?bgcolor=2080ff&color1=ffffff&color2=fff265&color3=ffffff&design=960&c0=1&lg=en&pg=7F98D269-5DFE-4FC9-99BF-97B5D8DA821F&t=6&cURL=8kxW2nP69SR05cnJ2w0GvgWx3Fe2bTe7VQdeG78LYiLRnHyZVb2OVBPnRFNgUqkJCZd35Pc1S83sRInOnLhLkQgb0NXA6kAoGg3AjbR3Klbn66W%2FD2VRpE6HcuFlkY7rs%2BnGGuSKLat4vFcnbKuvRg%3D%3D"
+			,"St Anton"),
+			new Link("http://www.lech-zuers.at/xxl/_lang/en/_season/at2/_area/585621/_subArea/585774/_inc/live-camera/index.html",
+			"Lech")
+		]
+		,[
+			"http://www.j2ski.com/snow_forecast/Austria/St_Anton_am_Arlberg_mini.html",
+			"http://www.j2ski.com/snow_forecast/Austria/Lech_mini.html"
+		],
+		[
+			new Link("http://ski.intermaps.com/skiarlberg/skimap.asp?map=ost&startdata=lifte&lang=en", "St Anton"),
+			new Link("http://ski.intermaps.com/skiarlberg/skimap.asp?map=west&startdata=lifte&lang=en", "Lech"),
+			new Link("http://ski.intermaps.com/skiarlberg/KMLs/skiarlberg_googleearth_together.asp?zoom=2&lang=en", "Google Earth")
+		],
+		new Date('February 26, 2012 12:00:00')),
+	new Destination("France", "Chamonix", 
+		new Date('March 11, 2012 13:00:00'), 
+		new Date('March 12, 2012 10:00:00'), 
+		franceDiff, 
+		[
+			new Link("http://www.chamonix.net/english/webcam/chamcam.htm", "Chamonix")
+		],
+		[			
+			"http://www.j2ski.com/snow_forecast/France/Chamonix_mini.html",
+			"http://www.j2ski.com/snow_forecast/France/Argentiere_mini.html"
+		], null,
+		new Date('March 18, 2012 12:00:00'))	
+	];	
+
+var pDS_cams = [
+			new Link("http://livecam.avoriaz.com/", "Avoriaz"),
+			new Link("http://portesdusoleil.livecam360.com", "Pointe des Mossettes")
+		];
+var pDS_forecasts = [
+			"http://www.j2ski.com/snow_forecast/France/Morzine_mini.html",
+			"http://www.j2ski.com/snow_forecast/France/Les_Gets_mini.html",
+			"http://www.j2ski.com/snow_forecast/France/Avoriaz_mini.html"
+		]
+var pDS_maps = [
+			new Link("http://www.avoriaz.com/station-alpes-france/modules/plan-des-pistes/index.php?lg=uk", "Portes du Soleil")
+		];
+
+var pDS_longRange = [
+	new Link("http://www.worldweatheronline.com/Morzine-weather/Rhone-Alpes/FR.aspx", "World Weather")
+];
+	
+var destinations = [	
+	/*
+	new Destination("France", "Chamonix", 
+		new Date('January 12, 2013 13:00:00'), 
+		new Date('January 13, 2013 10:00:00'), 
+		franceDiff, 
+		[
+			new Webcam("Chamonix", "http://www.chamonix.net/english/webcam/chamcam.htm")
+		],
+		[			
+			"http://www.j2ski.com/snow_forecast/France/Chamonix_mini.html",
+			"http://www.j2ski.com/snow_forecast/France/Argentiere_mini.html"
+		], null,
+		new Date('January 26, 2013 12:00:00')),	*/
+	/*
+	new Destination("France", "Tignes",
+		new Date('February 2, 2013 08:55:00'), 
+		new Date('February 3, 2013 10:00:00'), 
+		franceDiff, 
+		[
+			new Link("http://tignes.livecam360.net/lac", "Tignes Le Lac"),
+			new Link("http://tignes.livecam360.net/val-claret", "Tignes Val Claret"),
+			new Link("http://tignes.livecam360.net/grande-motte", "Tignes Grande Motte"),
+			new Link("http://tignes.livecam360.net/toviere", "Tignes Toviere")
+		]
+		,[
+			"http://www.j2ski.com/snow_forecast/France/Tignes_mini.html",
+			"http://www.j2ski.com/snow_forecast/France/Val_d_Isere_mini.html"
+		],
+		[
+			new Link("http://cdn2.j2ski.com/piste_maps/o/FR/Tignes_Piste_Map.jpg", "Static Map"),
+			new Link("http://www.tignes.net/en/skiing-in-tignes/ski-run-map-28.html", "Interactive Map")
+		],
+		new Date('February 26, 2012 20:30:00')) ,
+	*/
+	new Destination("France", "Chatel",
+		new Date('January 4, 2014 12:15:00'), 
+		new Date('January 5, 2014 10:00:00'), 
+		franceDiff, 
+		pDS_cams,
+		pDS_forecasts,
+		pDS_maps,
+		new Date('January 18, 2014 11:05:00'),
+		pDS_longRange),
+	new Destination("France", "Montriond",
+		new Date('February 2, 2014 12:00:00'), 
+		new Date('February 3, 2014 10:00:00'), 
+		franceDiff, 
+		pDS_cams,
+		pDS_forecasts,
+		pDS_maps,
+		new Date('February 9, 2014 12:00:00'),
+		pDS_longRange
+		),
+	new Destination("France", "Montriond",
+		new Date('March 16, 2014 12:00:00'), 
+		new Date('March 17, 2014 10:00:00'), 
+		franceDiff, 
+		pDS_cams,
+		pDS_forecasts,
+		pDS_maps,
+		new Date('March 23, 2014 12:00:00'),
+		pDS_longRange
+		)
+	
+	];	
+
+destinations.sort(function(a, b)
+{
+	return a.flight - b.flight;
+});
+	
+$(document).ready(function() {
+
+var parent = $('#destinations');
+for(var i=0; i< destinations.length; i++)
+{
+	var destination = destinations[i];	
+	destination.render(parent);
+}
+
+updating =0;
+
+
+function update()
+{	
+	var now = new Date();
+	for(var i=0; i< destinations.length; i++)
+	{
+		var destination = destinations[i];		
+		destination.update(now);
+	}	
+	updating =  setTimeout(update, withMillis ? 100 : 1000);
+}
+update();
+});
+</script>
+<title>Snowboarding !</title>
+</head>
+<body>	
+	<div id="outer">
+		<h1><img src="img/flux.png"/>Snowboarding 2014 Dashboard</h1>
+		<div id="destinations"></div>
+		<div style="clear:both"></div> 
+		<button onclick="clearTimeout(updating)" type="button" style="display:none">Stop</button>			
+	</div>
+</body>
+</html>
