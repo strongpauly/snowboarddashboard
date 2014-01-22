@@ -141,6 +141,7 @@
 <script type="text/javascript" src="script/Destination.js"></script>
 <script type="text/javascript" src="script/Trip.js"></script>
 <script type="text/javascript" src="script/Link.js"></script>
+<script type="text/javascript" src="script/SnowReport.js"></script>
 <script type="text/javascript">
 var withMillis = false;
 
@@ -242,12 +243,12 @@ var portesDuSoleil = new Destination("France", "Chatel",
 			new Link("http://portesdusoleil.livecam360.com", "Pointe des Mossettes")
 		],
 		[
-			"http://www.j2ski.com/snow_forecast/France/Morzine_mini.html",
-			"http://www.j2ski.com/snow_forecast/France/Les_Gets_mini.html",
-			"http://www.j2ski.com/snow_forecast/France/Avoriaz_mini.html"
+			new SnowReport("Morzine", "http://www.j2ski.com/snow_forecast/France/Morzine_mini.html"),
+			new SnowReport("Les Gets", "http://www.j2ski.com/snow_forecast/France/Les_Gets_mini.html"),
+			new SnowReport("Avoriaz", "http://www.j2ski.com/snow_forecast/France/Avoriaz_mini.html")
 		],
 		[
-			new Link("http://www.avoriaz.com/station-alpes-france/modules/plan-des-pistes/index.php?lg=uk", "Portes du Soleil")
+			new Link("http://www.avoriaz.com/en/skiing/all-about-skiing/ski-map", "Portes du Soleil")
 		],
 		[
 	new Link("http://www.worldweatheronline.com/Morzine-weather/Rhone-Alpes/FR.aspx", "World Weather")

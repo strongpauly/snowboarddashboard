@@ -104,7 +104,7 @@ Trip.prototype.getHtml = function()
 		html.push('<div class="snowreports">');
 		for (var i=0; i<destination.snowreports.length; i++)
 		{
-			html.push('<span class="snowreport"><iframe src="'+destination.snowreports[i]+'"></iframe></span>');
+			html.push(destination.snowreports[i].getHtml());
 		}
 		html.push('</div>');
 	}
