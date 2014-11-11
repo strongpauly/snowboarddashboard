@@ -70,6 +70,7 @@
 		float:left;
 		display:table-cell;
 		width:275px;
+		margin-bottom:8px;
 	}
 	
 	.flightTime, .boardTime, .maps
@@ -103,12 +104,12 @@
 		height:200px;
 		padding-left:20px;
 		clear:both;
-        padding-bottom:15px;
+		padding-bottom:15px;
 	}
 	
 	.destination-map
 	{
-		height:275px;
+		height:330px;
 	}
 			
 	.maps span, .webcams span
@@ -236,11 +237,13 @@ var tignes = new Destination("France", "Tignes",
 			new Link("http://www.tignes.net/en/skiing-in-tignes/ski-run-map-28.html", "Interactive Map")
 		]);
 		
-var portesDuSoleil = new Destination("France", "Chatel",
+var portesDuSoleil = new Destination("France", "Portes Du Soleil",
 		franceDiff, 
 		[
 			new Link("http://livecam.avoriaz.com/", "Avoriaz"),
-			new Link("http://portesdusoleil.livecam360.com", "Pointe des Mossettes")
+			new Link("http://www.livecam360.com/95/", "Pointe des Mossettes"),
+			new Link("http://www.livecam360.com/79/", "Chamossière")
+			
 		],
 		[
 			new SnowReport("Morzine", "http://www.j2ski.com/snow_forecast/France/Morzine_mini.html"),
@@ -255,18 +258,22 @@ var portesDuSoleil = new Destination("France", "Chatel",
 ]);
 	
 var trips = [	
+	new Trip(portesDuSoleil, 'Bonus Weekend <br> Montriond, France',
+		new Date('December 11, 2014 12:20:00'), 
+		new Date('December 12, 2014 10:00:00'), 
+		new Date('December 15, 2014 11:10:00')),
+	new Trip(portesDuSoleil, '"Actix" <br> Les Gets, France',
+		new Date('January 18, 2015 12:00:00'), 
+		new Date('January 19 2015 10:00:00'), 
+		new Date('January 24, 2015 12:00:00')),	
 	new Trip(portesDuSoleil, "Rider Social <br> Chatel, France",
-		new Date('January 4, 2014 12:15:00'), 
-		new Date('January 5, 2014 10:00:00'), 
-		new Date('January 18, 2014 11:05:00')),
-	new Trip(portesDuSoleil, '"Actix" <br> Montriond, France',
-		new Date('February 2, 2014 12:00:00'), 
-		new Date('February 3, 2014 10:00:00'), 
-		new Date('February 9, 2014 12:00:00')),
+		new Date('February 1, 2015 12:00:00'), 
+		new Date('February 2, 2015 10:00:00'), 
+		new Date('February 8, 2015 12:00:00')),	
 	new Trip(portesDuSoleil, "Slushy Week <br> Montriond, France",
-		new Date('March 16, 2014 12:00:00'), 
-		new Date('March 17, 2014 10:00:00'), 
-		new Date('March 23, 2014 12:00:00'))
+		new Date('March 15, 2015 12:00:00'), 
+		new Date('March 16, 2015 10:00:00'), 
+		new Date('March 22, 2015 12:00:00'))
 	];	
 
 trips.sort(function(a, b)
