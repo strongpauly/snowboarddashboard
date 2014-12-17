@@ -1,10 +1,11 @@
 (function(){
 
 
-Trip = function(destination, title, flight, board, end)
+Trip = function(destination, name, resort, flight, board, end)
 {
 	this.destination = destination;
-	this.title = title;
+	this.name = name;
+	this.resort = resort;
 	this.flight = flight;
 	this.board = board;
 	this.end = end;
@@ -19,7 +20,7 @@ Trip.prototype.render = function(parent)
 Trip.prototype.update = function(now)
 {
 	var localTime = now.addHours(this.destination.offset);
-	$('.localTime', this.dom).html(localTime.toTimeString());
+	$('.localTime', this.dom).html("(" + localTime.toTimeString() + ")");
 	var end = this.end;
 	function getTimeHtml(date, offset, flight)
 	{
@@ -60,9 +61,14 @@ Trip.prototype.getHtml = function()
 		html.push('destination');
 	}
 	html.push('"><div class="times"><h2>');	
-	var title = this.title != null ? this.title : (destination.resort != null ? destination.resort + ', ' + destination.country : destination.country);
-	html.push(title);
-	html.push(' (<span class="localTime"></span>)');	
+	html.push('<div class="trip-name">');
+	html.push(this.name);
+	html.push('</div>');	
+	html.push('<div class="resort">');
+	//Fallback to destination resort if not specified.
+	html.push(this.resort != null ? this.resort : (destination.resort != null ? destination.resort + ', ' + destination.country : destination.country));
+	html.push('</div>');
+	html.push('<span class="localTime"></span>');	
 	html.push('</h2><h3>Flight: ' + this.flight.toDateTimeString() + '</h3>'
 		+'<div class="flightTime"></div>'
 		+'<h3>Snowboarding: '+this.board.toDateTimeString()+'</h3>'

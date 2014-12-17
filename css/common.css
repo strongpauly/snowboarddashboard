@@ -1,0 +1,42 @@
+body
+	{			
+		font-family:Tahoma,Arial,sans-serif;
+		font-size:11px;
+		color:navy;
+	}
+
+div, h1, h2, h3, img
+	{
+		margin:0;
+		padding:0;
+	}
+
+	h1
+	{
+		margin-top:10px;
+		margin-bottom:10px;
+	}
+	
+	a, a:visited
+	{
+		text-decoration:underline;
+		color:navy;
+	}
+		
+	iframe
+	{
+		height:116px;	
+		width:316px;
+		border: 0px;
+	}	
+	
+	span.localTime
+	{
+		padding-left:4px;
+	}
+	
+	.resort
+	{
+		display:inline;
+	}
+	
