@@ -74,13 +74,14 @@ var portesDuSoleil = new Destination("France", "Portes Du Soleil",
 		[
 			new Link("http://livecam.avoriaz.com/", "Avoriaz"),
 			new Link("http://www.livecam360.com/95/", "Pointe des Mossettes"),
-			new Link("http://www.livecam360.com/79/", "Chamossière")
+			new Link("http://www.livecam360.com/79/", "Chamossi&egrave;re")
 			
 		],
 		[
 			new SnowReport("Morzine", "http://www.j2ski.com/snow_forecast/France/Morzine_mini.html"),
 			new SnowReport("Les Gets", "http://www.j2ski.com/snow_forecast/France/Les_Gets_mini.html"),
 			new SnowReport("Avoriaz", "http://www.j2ski.com/snow_forecast/France/Avoriaz_mini.html")
+            //,new WebServiceSnowReport("Avoriaz", "http://www.myweather2.com/developer/weather.ashx?uac=kHzPMaXEnv&uref=17f70581-af06-4649-bcb0-b87b38b4100b&output=json")
 		],
 		[
 			new Link("http://www.avoriaz.com/en/skiing/all-about-skiing/ski-map", "Portes du Soleil")

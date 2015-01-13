@@ -14,7 +14,15 @@ Trip = function(destination, name, resort, flight, board, end)
 Trip.prototype.render = function(parent)
 {
 	this.dom = $(this.getHtml());
-	parent.append(this.dom);	
+	parent.append(this.dom);
+    if(this.destination.snowreports != null)
+    {
+        for(var i=0; i<this.destination.snowreports.length; i++)
+        {
+            var report = this.destination.snowreports[i];
+            report.load();
+        }
+    }
 }
 
 Trip.prototype.update = function(now)

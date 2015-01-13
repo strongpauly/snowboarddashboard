@@ -26,4 +26,10 @@ SnowReport.prototype.getHtml = function()
     
 	return html.join('');
 }
+
+SnowReport.prototype.load = function()
+{
+    
+}
+
 })();
