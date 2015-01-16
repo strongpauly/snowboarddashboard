@@ -68,7 +68,7 @@ var allOver = true;
 for(var i=0; i< trips.length; i++)
 {
 	var trip = trips[i];	
-	trip.render(parent);
+	trip.render(parent, renderTime);
     allOver = allOver && trip.isOver(renderTime);
 }
 

@@ -11,9 +11,9 @@ Trip = function(destination, name, resort, flight, board, end)
 	this.end = end;
 }
 
-Trip.prototype.render = function(parent)
+Trip.prototype.render = function(parent, now)
 {
-	this.dom = $(this.getHtml());
+	this.dom = $(this.getHtml(now));
 	parent.append(this.dom);
     if(this.destination.snowreports != null)
     {
@@ -64,9 +64,10 @@ Trip.prototype.update = function(now)
     }
 }
 
-Trip.prototype.getHtml = function()
+Trip.prototype.getHtml = function(now)
 {
-    if( this.isOver(new Date()) )
+    //Hide if the trip is over.
+    if( this.isOver(now) )
     {
         return '';
     }    
