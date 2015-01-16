@@ -63,14 +63,21 @@ trips.sort(function(a, b)
 $(document).ready(function() {
 
 var parent = $('#destinations');
+var renderTime = new Date();
+var allOver = true;
 for(var i=0; i< trips.length; i++)
 {
 	var trip = trips[i];	
 	trip.render(parent);
+    allOver = allOver && trip.isOver(renderTime);
 }
 
+if(allOver)
+{
+    parent.html("<h2>Boarding over for the season :( <br>Get planning!</h2>");
+}
+    
 updating =0;
-
 
 function update()
 {	

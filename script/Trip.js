@@ -25,39 +25,51 @@ Trip.prototype.render = function(parent)
     }
 }
 
+Trip.prototype.isOver = function(now) 
+{
+    return this.end < now;
+}
+
 Trip.prototype.update = function(now)
 {
-	var localTime = now.addHours(this.destination.offset);
-	$('.localTime', this.dom).html("(" + localTime.toTimeString() + ")");
-	var end = this.end;
-	function getTimeHtml(date, offset, flight)
-	{
-		if(date < now)
-		{
-			var message;
-			var during = end > now;
-			if(flight)
-			{
-				message = during ? "You've arrived.  Get boarding!" : "It's over :( Whens the next trip?"; 
-			}
-			else			
-			{
-				message = during ? "You're there!  Hope you're having fun!" : "It's over :( Whens the next trip?"; 
-			}
-			return '<div class="pastEvent">'+message+'</div>'
-		}
-		return 	 '<div class="timeDays">' + now.timeUntilDays(date, offset) + '</div>'
-			+'<div class="timeHours">' + now.timeUntilHours(date, offset) + '</div>'
-			+'<div class="timeMinutes">' + now.timeUntilMinutes(date, offset) + '</div>'
-			+'<div class="timeSeconds">' + now.timeUntilSeconds(date, offset) + '</div>';
-	}
-	
-	$('.flightTime', this.dom).html(getTimeHtml(this.flight, 0, true));	
-	$('.boardTime', this.dom).html(getTimeHtml(this.board, this.destination.offset, false));
+    if(!this.isOver(now))
+    {
+        var localTime = now.addHours(this.destination.offset);
+        $('.localTime', this.dom).html("(" + localTime.toTimeString() + ")");
+        var end = this.end;
+        function getTimeHtml(date, offset, flight)
+        {
+            if(date < now)
+            {
+                var message;
+                var during = end > now;
+                if(flight)
+                {
+                    message = during ? "You've arrived.  Get boarding!" : "It's over :( Whens the next trip?"; 
+                }
+                else			
+                {
+                    message = during ? "You're there!  Hope you're having fun!" : "It's over :( Whens the next trip?"; 
+                }
+                return '<div class="pastEvent">'+message+'</div>'
+            }
+            return 	 '<div class="timeDays">' + now.timeUntilDays(date, offset) + '</div>'
+                +'<div class="timeHours">' + now.timeUntilHours(date, offset) + '</div>'
+                +'<div class="timeMinutes">' + now.timeUntilMinutes(date, offset) + '</div>'
+                +'<div class="timeSeconds">' + now.timeUntilSeconds(date, offset) + '</div>';
+        }
+
+        $('.flightTime', this.dom).html(getTimeHtml(this.flight, 0, true));	
+        $('.boardTime', this.dom).html(getTimeHtml(this.board, this.destination.offset, false));
+    }
 }
 
 Trip.prototype.getHtml = function()
 {
+    if( this.isOver(new Date()) )
+    {
+        return '';
+    }    
 	var html = ['<div class="'];
 	var destination = this.destination;
 	if(destination.maps != null)
