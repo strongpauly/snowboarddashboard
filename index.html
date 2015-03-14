@@ -26,11 +26,15 @@ if(params)
 		var param = params[i].toLowerCase();		
 		if(param.indexOf('withmillis') == 0)
 		{
-			var value = param.split('=')[1];
-			if(value)
-			{
-				withMillis = value == 'true';
-			}
+            var pair = param.split('=');
+            if(pair.length > 1)
+            {
+                var value = pair[1].toLowerCase();
+                if(value)
+                {
+                    withMillis = value == 'true';
+                }
+            }
 		}
 	}
 }
@@ -77,7 +81,7 @@ if(allOver)
     parent.html("<h2><p>Boarding over for the season :( </p><p>Get planning!</p></h2>");
 }
     
-updating =0;
+window.updating = 0;
 
 function update()
 {	
@@ -87,12 +91,12 @@ function update()
 		var trip = trips[i];		
 		trip.update(now);
 	}	
-	updating =  setTimeout(update, withMillis ? 100 : 1000);
+	window.updating = setTimeout(update, withMillis ? 100 : 1000);
 }
 update();
 });
 </script>
-<title>Snowboarding !</title>
+<title>Snowboarding!</title>
 </head>
 <body>	
 	<div id="outer">
