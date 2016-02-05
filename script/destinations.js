@@ -72,9 +72,10 @@ var tignes = new Destination("France", "Tignes",
 var portesDuSoleil = new Destination("France", "Portes Du Soleil",
 		franceDiff, 
 		[
-			new Link("http://livecam.avoriaz.com/", "Avoriaz"),
-			new Link("http://www.livecam360.com/95/", "Pointe des Mossettes"),
-			new Link("http://www.livecam360.com/79/", "Chamossi&egrave;re")
+			new Link("http://www.avorinet.com/webcams/town-centre", "Avoriaz"),
+			new Link("http://www.avorinet.com/webcams/portes-du-soleil", "Pointe des Mossettes"),
+			new Link("http://www.avorinet.com/webcams/amara", "Amara"),
+			new Link("http://www.avorinet.com/webcams/chatel", "Chatel")
 			
 		],
 		[
