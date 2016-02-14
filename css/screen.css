@@ -33,10 +33,14 @@
 		
 	iframe
 	{
-		height:116px;	
-		width:316px;
 		border: 0px;
 	}	
+
+	iframe.snowreportframe
+	{
+		height:116px;	
+		width:316px;
+	}
 	
 	.times
 	{

@@ -20,7 +20,7 @@ SnowReport.prototype.getHtml = function()
     html.push('<h3>');
     html.push(this.name);
     html.push('</h3>');
-    html.push('<iframe src="');
+    html.push('<iframe class="snowreportframe" src="');
     html.push(this.url);
     html.push('"></iframe></span>');
     

@@ -88,5 +88,7 @@ var portesDuSoleil = new Destination("France", "Portes Du Soleil",
 			new Link("http://www.avoriaz.com/en/skiing/all-about-skiing/ski-map", "Portes du Soleil")
 		],
 		[
-	new Link("http://www.worldweatheronline.com/Morzine-weather/Rhone-Alpes/FR.aspx", "World Weather")
-]);
+			new Link("http://www.worldweatheronline.com/Morzine-weather/Rhone-Alpes/FR.aspx", "World Weather")
+		],
+		new Location(46.173, 6.707)
+);
