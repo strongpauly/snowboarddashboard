@@ -1,3 +1,8 @@
+html
+{
+	overflow-x: hidden;
+}
+
 body
 	{			
 		font-family:Tahoma,Arial,sans-serif;
@@ -37,11 +42,9 @@ div, h1, h2, h3, img
 	
 	.windMap 
 	{
-	  display: flex;
-	  justify-content: center;
-	  align-items: center;
-	  width: 100%;
 	  padding: 10px;
+	  height: 100%;
+	  width: 100%;
 	}
 
 	iframe.windMapFrame

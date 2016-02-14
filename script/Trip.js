@@ -129,20 +129,19 @@ Trip.prototype.getHtml = function(now)
 	if(destination.snowreports != null && destination.snowreports.length > 0)
 	{
 		html.push('<div class="snowreports">');
-		html.push('<div>')
 		for (var i=0; i<destination.snowreports.length; i++)
 		{
 			html.push(destination.snowreports[i].getHtml());
 		}
-		html.push('</div>')
-		if(destination.windMap)
-		{
-			html.push('<div class="windMap">');
-			html.push(destination.windMap.getHtml());
-			html.push('</div>');
-		}
 		html.push('</div>');
 	}
+	if(destination.windMap)
+	{
+		html.push('<div class="windMap">');
+		html.push(destination.windMap.getHtml());
+		html.push('</div>');
+	}
+	
 	html.push('</div>')
 	return html.join('');
 }
