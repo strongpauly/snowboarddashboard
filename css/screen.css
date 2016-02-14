@@ -59,7 +59,6 @@
 	
 	.snowreports 
 	{
-	    float: left;
 	    height: 100%;
 	    display: flex;
 	    justify-content: column;
@@ -81,13 +80,13 @@
 		padding-left:20px;
 		clear:both;
 		padding-bottom:15px;
+		display: flex;
+    	flex-direction: row;
 	}
 	
 	.destination-map
 	{
 		height:450px;
-		display: flex;
-    	flex-direction: row;
 	}
 			
 	.maps span, .webcams span
@@ -116,4 +115,14 @@
 		padding-left :10px
 	}
 	
+	.windMap
+	{
+		 padding: 10px;
+	}
+
+	iframe.windMapFrame
+	{
+		margin-left: 10px;
+		margin-right: 10px;
+	}
 	

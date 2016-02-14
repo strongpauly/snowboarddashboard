@@ -19,8 +19,9 @@ h2
 
 }
 
-
-.trip-name
+.destination, .destination-map
 {
-	display:inline;
+	border-top: 1px solid navy;
+	display: flex;
+	flex-direction: column;
 }
