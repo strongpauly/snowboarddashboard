@@ -64,5 +64,11 @@ div, h1, h2, h3, img
 	.destination, .destination-map
 	{
 		display: flex;
+		flex-direction: row;
+	}
+
+	.maps span, .webcams span
+	{
+		padding-right:4px;
 	}
 	

@@ -22,12 +22,19 @@ h2
 .destination, .destination-map
 {
 	border-top: 1px solid navy;
-	flex-direction: column;
+}
+
+.times
+{
+	width: 50vw;
 }
 
 .snowreports
 {
 	display: flex;
+	flex-direction: column;
+	width: 50vw;
+	align-items: center;
 }
 
 .windMap
