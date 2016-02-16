@@ -17,14 +17,18 @@ WindMap.prototype.render = function(parent)
 
 WindMap.prototype.getHtml = function()
 {
-	var html = ['<iframe class="windMapFrame" src="https://embed.windyty.com/?']
-    html.push(this.location.latitude);
-    html.push(',');
-    html.push(this.location.longitude);
-    html.push(',');
-    html.push(this.zoom);
-    html.push(',in:12,temp,marker,menu,message,metric.wind.km/h" ');
-    html.push(' frameborder="0"></iframe>');
+	var html = [];
+    if(!('ontouchstart' in window))
+    {
+    	html.push('<iframe class="windMapFrame" src="https://embed.windyty.com/?');
+        html.push(this.location.latitude);
+        html.push(',');
+        html.push(this.location.longitude);
+        html.push(',');
+        html.push(this.zoom);
+        html.push(',in:12,temp,marker,menu,message,metric.wind.km/h" ');
+        html.push(' frameborder="0"></iframe>');
+    }
 	return html.join('');
 }
 
