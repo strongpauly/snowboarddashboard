@@ -22,7 +22,6 @@ h2
 .destination, .destination-map
 {
 	border-top: 1px solid navy;
-	display: flex;
 	flex-direction: column;
 }
 
@@ -34,4 +33,5 @@ h2
 .windMap
 {
 	height: 50vw;
+	width:100%;
 }
