@@ -4,7 +4,7 @@
 Trip = function(destination, name, resort, flight, board, end)
 {
 	this.destination = destination;
-	this.name = name;
+	this.id = this.name = name;
 	this.resort = resort;
 	this.flight = flight;
 	this.board = board;
@@ -25,7 +25,7 @@ Trip.prototype.render = function(parent, now)
     }
 }
 
-Trip.prototype.isOver = function(now) 
+Trip.prototype.isOver = function(now)
 {
     return this.end < now;
 }
@@ -45,11 +45,11 @@ Trip.prototype.update = function(now)
                 var during = end > now;
                 if(flight)
                 {
-                    message = during ? "You've arrived.  Get boarding!" : "It's over :( Whens the next trip?"; 
+                    message = during ? "You've arrived.  Get boarding!" : "It's over :( Whens the next trip?";
                 }
-                else			
+                else
                 {
-                    message = during ? "You're there!  Hope you're having fun!" : "It's over :( Whens the next trip?"; 
+                    message = during ? "You're there!  Hope you're having fun!" : "It's over :( Whens the next trip?";
                 }
                 return '<div class="pastEvent">'+message+'</div>'
             }
@@ -59,7 +59,7 @@ Trip.prototype.update = function(now)
                 +'<div class="timeSeconds">' + now.timeUntilSeconds(date, offset) + '</div>';
         }
 
-        $('.flightTime', this.dom).html(getTimeHtml(this.flight, 0, true));	
+        $('.flightTime', this.dom).html(getTimeHtml(this.flight, 0, true));
         $('.boardTime', this.dom).html(getTimeHtml(this.board, this.destination.offset, false));
     }
 }
@@ -70,7 +70,7 @@ Trip.prototype.getHtml = function(now)
     if( this.isOver(now) )
     {
         return '';
-    }    
+    }
 	var html = ['<div class="'];
 	var destination = this.destination;
 	if(destination.maps != null)
@@ -81,19 +81,21 @@ Trip.prototype.getHtml = function(now)
 	{
 		html.push('destination');
 	}
-	html.push('"><div class="times"><h2>');	
+	html.push('" id="');
+	html.push(this.id)
+	html.push('"><div class="times"><h2>');
 	html.push('<div class="trip-name">');
 	html.push(this.name);
-	html.push('</div>');	
+	html.push('</div>');
 	html.push('<div class="resort">');
 	//Fallback to destination resort if not specified.
 	html.push(this.resort != null ? this.resort : (destination.resort != null ? destination.resort + ', ' + destination.country : destination.country));
 	html.push('</div>');
-	html.push('<span class="localTime"></span>');	
+	html.push('<span class="localTime"></span>');
 	html.push('</h2><h3>Flight: ' + this.flight.toDateTimeString() + '</h3>'
 		+'<div class="flightTime"></div>'
 		+'<h3>Snowboarding: '+this.board.toDateTimeString()+'</h3>'
-		+'<div class="boardTime"></div>');		
+		+'<div class="boardTime"></div>');
 	if(destination.maps != null)
 	{
 		html.push('<h3>Maps</h3>');
@@ -105,7 +107,7 @@ Trip.prototype.getHtml = function(now)
 		html.push('</div>');
 	}
 	if(destination.webcams != null)
-	{		
+	{
 		html.push('<h3>Web Cams</h3>');
 		html.push('<div class="webcams">');
 		for(var i=0; i<destination.webcams.length; i++)
@@ -141,7 +143,7 @@ Trip.prototype.getHtml = function(now)
 		html.push(destination.windMap.getHtml());
 		html.push('</div>');
 	}
-	
+
 	html.push('</div>')
 	return html.join('');
 }

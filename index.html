@@ -15,7 +15,7 @@
 <script type="text/javascript" src="script/SnowReport.js"></script>
 <script type="text/javascript" src="script/WebServiceSnowReport.js"></script>
 <script type="text/javascript" src="script/WindMap.js"></script>
-<script type="text/javascript" src="script/destinations.js"></script>    
+<script type="text/javascript" src="script/destinations.js"></script>
 <script type="text/javascript">
 var withMillis = false;
 
@@ -26,7 +26,7 @@ if(params)
 	params = params.split("&");
 	for (var i=0; i<params.length; i++)
 	{
-		var param = params[i].toLowerCase();		
+		var param = params[i].toLowerCase();
 		if(param.indexOf('withmillis') == 0)
 		{
             var pair = param.split('=');
@@ -42,23 +42,27 @@ if(params)
 	}
 }
 })();
-	
-var trips = [	
+
+var trips = [
 	new Trip(portesDuSoleil, 'Season', 'Morzine, France',
-		new Date('December 29, 2015 14:10:00'), 
-		new Date('December 30, 2015 10:00:00'), 
+		new Date('December 29, 2015 14:10:00'),
+		new Date('December 30, 2015 10:00:00'),
 		new Date('April 20, 2016 17:00:00'))
 	, new Trip(portesDuSoleil, 'Spring Trip', 'Morzine, France',
-		new Date('March 06, 2016 14:10:00'), 
-		new Date('March 07, 2016 10:00:00'), 
+		new Date('March 06, 2016 14:10:00'),
+		new Date('March 07, 2016 10:00:00'),
 		new Date('March 13, 2016 17:00:00'))
-	];	
+  , new Trip(portesDuSoleil, 'Darius Trip', 'Morzine, France',
+		new Date('March 16, 2016 17:00:00'), 
+		new Date('March 17, 2016 10:00:00'),
+		new Date('March 21, 2016 17:00:00'))
+	];
 
 trips.sort(function(a, b)
 {
 	return a.flight - b.flight;
 });
-	
+
 $(document).ready(function() {
 
 var parent = $('#destinations');
@@ -66,7 +70,7 @@ var renderTime = new Date();
 var allOver = true;
 for(var i=0; i< trips.length; i++)
 {
-	var trip = trips[i];	
+	var trip = trips[i];
 	trip.render(parent, renderTime);
     allOver = allOver && trip.isOver(renderTime);
 }
@@ -75,17 +79,17 @@ if(allOver)
 {
     parent.html("<h2><p>Boarding over for the season :( </p><p>Get planning!</p></h2>");
 }
-    
+
 window.updating = 0;
 
 function update()
-{	
+{
 	var now = new Date();
 	for(var i=0; i< trips.length; i++)
 	{
-		var trip = trips[i];		
+		var trip = trips[i];
 		trip.update(now);
-	}	
+	}
 	window.updating = setTimeout(update, withMillis ? 100 : 1000);
 }
 update();
@@ -93,12 +97,12 @@ update();
 </script>
 <title>Snowboarding!</title>
 </head>
-<body>	
+<body>
 	<div id="outer">
 		<h1><img src="img/flux.png"/>Snowboarding 2015/16</h1>
 		<div id="destinations"></div>
-		<div style="clear:both"></div> 
-		<button onclick="clearTimeout(updating)" type="button" style="display:none">Stop</button>			
+		<div style="clear:both"></div>
+		<button onclick="clearTimeout(updating)" type="button" style="display:none">Stop</button>
 	</div>
 </body>
 </html>
